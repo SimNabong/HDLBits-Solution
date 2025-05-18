@@ -1,0 +1,14 @@
+module top_module (
+    input [4:0] a, b, c, d, e, f,
+    output [7:0] w, x, y, z );
+    
+    wire [31:0] abcdef;
+    
+    assign abcdef = {a,b,c,d,e,f,2'b11};
+    
+    assign w = abcdef[31:24];
+    assign x = abcdef[23:16];
+    assign y = abcdef[15:8];
+    assign z = abcdef[7:0];
+
+endmodule
