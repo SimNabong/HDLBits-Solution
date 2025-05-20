@@ -1,0 +1,18 @@
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    input sub,
+    output [31:0] sum
+);
+    
+    wire [15:0] sum1,sum2;
+    wire cin;
+    wire [31:0] XOR_b;
+    
+    assign sum = {sum2,sum1};
+    assign XOR_b = (sub)?~b: b;    
+    
+    add16 add161Inst( .a(a[15:0]), .b(XOR_b[15:0]), .cin(sub), .sum(sum1), .cout(cin) );
+    add16 add162Inst( .a(a[31:16]), .b(XOR_b[31:16]), .cin(cin), .sum(sum2));
+    
+endmodule
