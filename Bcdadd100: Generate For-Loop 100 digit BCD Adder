@@ -1,0 +1,21 @@
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+    
+    genvar i;
+    wire [399:0] coutw;
+    
+    bcd_fadd BCDAInst0( .a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(coutw[0]), .sum(sum[3:0]) );
+    
+    generate
+        for(i=4; i<400; i=i+4)begin:BCDAInst
+            bcd_fadd BCDAInst( .a(a[i+3:i]), .b(b[i+3:i]), .cin(coutw[i-4]), .cout(coutw[i]), .sum(sum[i+3:i]) );
+        end
+    endgenerate
+    
+    assign cout = coutw[i-4];
+    
+
+endmodule
