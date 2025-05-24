@@ -1,0 +1,14 @@
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    
+    reg [7:0] inr;
+    
+    always@(posedge clk)begin
+    	inr <= in;
+        anyedge <= (~inr & in) | (inr & ~in);
+    end
+
+endmodule
