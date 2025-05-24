@@ -1,0 +1,26 @@
+module top_module( 
+    input [2:0] a, b,
+    input cin,
+    output [2:0] cout,
+    output [2:0] sum );
+    
+    wire [2:0] cinw;
+    
+    assign cout = cinw;
+    
+    full_adder fhIns0(.a(a[0]), .b(b[0]), .cin(cin), .cout(cinw[0]), .sum(sum[0]));
+    full_adder fhIns1(.a(a[1]), .b(b[1]), .cin(cinw[0]), .cout(cinw[1]), .sum(sum[1]));
+    full_adder fhIns2(.a(a[2]), .b(b[2]), .cin(cinw[1]), .cout(cinw[2]), .sum(sum[2]));
+    
+
+endmodule
+
+module full_adder( 
+    input a, b, cin,
+    output cout, sum );
+    
+	assign cout = a&b | a&cin | b&cin;
+    assign sum	= a ^ b ^ cin;
+    
+endmodule
+
