@@ -1,0 +1,9 @@
+module top_module( 
+    input [1023:0] in,
+    input [7:0] sel,
+    output [3:0] out );
+    
+    //2^8=256, 1024/256=4, 4 in bits per sel 
+    assign out = in[4*sel+:4];
+
+endmodule
