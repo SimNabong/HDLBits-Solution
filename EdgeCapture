@@ -1,0 +1,18 @@
+module top_module (
+    input clk,
+    input reset,
+    input [31:0] in,
+    output [31:0] out
+);
+    
+    reg [31:0] inr, outr;
+    
+    always@(posedge clk)begin
+        inr <= in;
+        if(reset)
+            out <= 32'd0;
+        else
+            out <= (~in & inr) | out;
+    end
+
+endmodule
